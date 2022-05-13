@@ -61,13 +61,38 @@
           crossorigin="anonymous"
         ></a-asset-item>
         <a-asset-item
-          id="earth-model"
-          src="assets/earth.glb" 
+          id="mercury-model"
+          src="assets/mercury.glb" 
           crossorigin="anonymous"
         ></a-asset-item>
         <a-asset-item
-          id="mercury-model"
-          src="assets/mercury.glb" 
+          id="venus-model"
+          src="assets/venus.glb" 
+          crossorigin="anonymous"
+        ></a-asset-item>
+        <a-asset-item
+          id="earth-model"
+          src="assets/earth1.glb" 
+          crossorigin="anonymous"
+        ></a-asset-item>
+        <a-asset-item
+          id="mars-model"
+          src="assets/mars.glb" 
+          crossorigin="anonymous"
+        ></a-asset-item>
+        <a-asset-item
+          id="jupiter-model"
+          src="assets/jupiter.glb" 
+          crossorigin="anonymous"
+        ></a-asset-item>
+        <a-asset-item
+          id="saturn-model"
+          src="assets/saturn.glb" 
+          crossorigin="anonymous"
+        ></a-asset-item>
+        <a-asset-item
+          id="uranus-model"
+          src="assets/uranus.glb" 
           crossorigin="anonymous"
         ></a-asset-item>
         <img
@@ -151,7 +176,19 @@
           position="0 0 0"
           scale="0.5 0.5 0.5"
           gltf-model="#mercury-model"
-          planet=
+          planet= "a: 1"
+        ></a-entity>
+        
+  </a-entity>
+
+  <a-entity id="venus" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
+        
+        <a-entity
+          id="model-venus"
+          position="0 0 0"
+          scale="0.5 0.5 0.5"
+          gltf-model="#venus-model"
+          planet= "a: 2"
         ></a-entity>
         
   </a-entity>
@@ -163,13 +200,59 @@
           position="0 0 0"
           scale="0.5 0.5 0.5"
           gltf-model="#earth-model"
-          planet=
+          planet= "a: 4"
         ></a-entity>
         
   </a-entity>
 
+  <a-entity id="mars" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
+        
+        <a-entity
+          id="model-mars"
+          position="0 0 0"
+          scale="0.5 0.5 0.5"
+          gltf-model="#mars-model"
+          planet= "a: 6"
+        ></a-entity>
+        
+  </a-entity>
 
-  -->
+  <a-entity id="jupiter" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
+        
+        <a-entity
+          id="model-jupiter"
+          position="0 0 0"
+          scale="0.5 0.5 0.5"
+          gltf-model="#jupiter-model"
+          planet= "a: 11"
+        ></a-entity>
+        
+  </a-entity>
+
+  <a-entity id="saturn" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
+        
+        <a-entity
+          id="model-saturn"
+          position="0 0 0"
+          scale="0.5 0.5 0.5"
+          gltf-model="#saturn-model"
+          planet= "a: 18"
+        ></a-entity>
+        
+  </a-entity>
+
+  <a-entity id="uranus" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
+        
+        <a-entity
+          id="model-uranus"
+          position="0 0 0"
+          scale="0.5 0.5 0.5"
+          gltf-model="#uranus-model"
+          planet= "a: 24"
+        ></a-entity>
+        
+  </a-entity>
+
   <!-- 360 panorama-->
   <a-sky src="#sky-image" material="" geometry="radius: 100" scale="1 1 1" position="0 1.6 1" rotation="0 70 0" visible ="true"></a-sky>
     
