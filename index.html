@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Układ słoneczny</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+
+
+    <script>
+      // WebXR requires HTTPS, so the site doesn't work if someone manually enters
+      // the URL and ends up using HTTP. To work around this, force redirect from
+      // http to https for non-localhost addresses.
+      if (
+        window.location.protocol == "http:" &&
+        window.location.hostname != "localhost" &&
+        window.location.hostname != "127.0.0.1" &&
+        window.location.hostname != "[::1]"
+      ) {
+        window.location = window.location.href.replace("http:", "https:");
+      }
+    </script>
+
+    <!-- import the webpage's javascript files -->
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+
+    <script src="../components/PointedModelPart.js"></script>
+    <script src="../components/HighlightShader.js"></script>
+    <script src="../components/PartName.js"></script>
+    <script src="../components/ModelPart.js"></script>
+    <script src="../components/OrbitControls.js"></script>
+    <script src="../components/Sun.js"></script>
+    <script src="../components/Planet.js"></script>
+
+    <script src="script.js"></script>
+
+                                                                                                       
+  </head>
+  <body>
+    <a-scene color-space="sRGB" raycaster="objects: .clickable;" cursor="rayOrigin: mouse" 
+    renderer="colorManagement: true, physicallyCorrectLights: true; antialias: true; logarithmicDepthBuffer: false; sortObjects: true;"
+    shadow="type: pcfsoft; autoUpdate: false;"
+    light="defaultLightsEnabled: true"
+    >
+      <a-assets timeout="30000">
+        <a-asset-item
+          id="source-model"
+          src="assets/solar system.glb" 
+          crossorigin="anonymous"
+        ></a-asset-item>
+        <a-asset-item
+          id="sun-model"
+          src="assets/sun1.glb" 
+          crossorigin="anonymous"
+        ></a-asset-item>
+        <a-asset-item
+          id="earth-model"
+          src="assets/earth.glb" 
+          crossorigin="anonymous"
+        ></a-asset-item>
+        <a-asset-item
+          id="mercury-model"
+          src="assets/mercury.glb" 
+          crossorigin="anonymous"
+        ></a-asset-item>
+        <img
+            id="text-bg-texture"
+            src="assets/text-bg-texture.png" 
+            crossorigin="anonymous"
+          />
+          <img 
+          id="sky-image" 
+          src="assets/starmap_g4k.jpg" 
+          crossorigin="anonymous"
+        />
+      </a-assets>
+  
+
+ <!-- Default lighting injected by A-Frame. 
+ <a-entity light="type: ambient; intensity:0.5; color: #AAA"></a-entity>
+ <a-entity light="type: directional; castShadow: true;" color="#FFFDD9"  intensity=".9" position="0 1 -1" ></a-entity>
+   -->
+ 
+
+
+ <!-- Camera -->
+ <a-entity id="camera" 
+ camera 
+ look-controls 
+ wasd-controls="enabled: true" 
+ position="0 0 0"
+  >
+  <!--
+  orbit-controls="
+          autoRotate: false;
+          target: #model-interactive;
+          enableDamping: true;
+          dampingFactor: 0.125;
+          rotateSpeed:0.25;
+          minDistance:3;
+          maxDistance:20;"
+  -->
+  <a-entity id="cursor" raycaster="far: 20; interval: 250; objects: .clickable; enabled: false"
+          scale="0 0 0"
+          material="color: #04FEFB; shader: flat"
+          position="0 0 -0.3"
+          geometry="primitive: ring; radius-inner: 0.003; radius-outer: 0.005"
+          visible="false">
+  </a-entity>
+
+</a-entity>
+<!--
+<a-entity id="modelDOM" position="0 .2 -0.4" rotation="0 5 0"  ar-mode-setup >
+        
+        <a-entity
+          id="model-interactive"
+          position="0 0 0"
+          scale="0.005 0.005 0.005"
+          gltf-model="#source-model"
+          class="clickable"
+          model-part
+          shadow = "receive: true"
+          modify-model
+        ></a-entity>
+        
+  </a-entity>
+  -->
+  <a-entity id="sun" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
+        
+        <a-entity
+          id="model-sun"
+          position="0 0 0"
+          scale="0.01 0.01 0.01"
+          gltf-model="#sun-model"
+          sun
+        ></a-entity>
+        
+  </a-entity>
+
+  <a-entity id="mercury" position="0 3 0" rotation="0 0 0"  ar-mode-setup >
+        
+        <a-entity
+          id="model-mercury"
+          position="0 0 0"
+          scale="0.5 0.5 0.5"
+          gltf-model="#mercury-model"
+          planet="a: 2; b:3; speed:4; rotationSpeed:4;"
+        ></a-entity>
+        
+  </a-entity>
+
+  <a-entity id="earth" position="0 0 0" rotation="30 0 0"  ar-mode-setup >
+        
+        <a-entity
+          id="model-earth"
+          position="0 0 0"
+          scale="0.5 0.5 0.5"
+          gltf-model="#earth-model"
+          planet="a: 2; b:3; speed:10; rotationSpeed:4;"
+        ></a-entity>
+        
+  </a-entity>
+
+
+  -->
+  <!-- 360 panorama-->
+  <a-sky src="#sky-image" material="" geometry="radius: 100" scale="1 1 1" position="0 1.6 1" rotation="0 70 0" visible ="true"></a-sky>
+    
+
+  </a-scene>
+    
+    <button id="toggle" class="toggle">
+      <i class="fa fa-bars fa-2x"></i>
+    </button>
+
+    <div id="info">
+      <h2>nazwa <br />zawodu</h2>
+      <h1>obiekt</h1>
+      
+      <h3>Tytuł h3<br/></h3>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus feugiat tellus eros, non efficitur neque bibendum eu. 
+        Donec pretium sodales diam a blandit. Curabitur imperdiet lobortis efficitur. Nulla hendrerit leo sit amet vulputate efficitur. 
+        Vestibulum vitae tincidunt mi. Sed ullamcorper metus quam, id aliquet lorem finibus quis.</p>
+
+      <p>
+        <button id="btn_reload" hidden><i class="fas fa-redo-alt"></i></button>
+      </p>
+      
+
+      <p>
+        Realizacja <a href="http://www.octopusvr.eu/">Octopus VR</a>.
+      </p>
+
+		<hr/>  
+      
+      <p>
+        W celu wypróbowania trybu AR użyj kompatybilnego z <a href="https://developers.google.com/ar/discover/supported-devices">ARCore</a> 
+        telefonu z systemem Android oraz przeglądarką Chrome v79+ i włącz <b>WebXR AR Module</b> w zakładce chrome://flags.
+      </p>
+      
+    
+    </div>
+
+  </body>
+</html>
