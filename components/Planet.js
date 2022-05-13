@@ -24,8 +24,8 @@ AFRAME.registerComponent('planet', {
         let delta = clock.getDelta();
         this.data.t += delta / this.data.time;
 
-        if (Math.abs(this.data.t) > 1) delta *= -delta;
-        this.data.model.position.set(this.data.a * (1 - this.data.t) * delta > 0 ? 1 : -1, 0, this.data.b * this.data.t);
+        if (Math.abs(this.data.t) > 1) this.data.time *= -this.data.time;
+        this.data.model.position.set(this.data.a * (1 - Math.abs(this.data.t)) * this.data.time > 0 ? 1 : -1, 0, this.data.b * this.data.t);
 
         this.data.model.rotation.y += this.data.rotationSpeed * delta;
         console.log(this.data.x + " " + this.data.y);
