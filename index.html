@@ -95,6 +95,11 @@
           src="assets/uranus.glb" 
           crossorigin="anonymous"
         ></a-asset-item>
+        <a-asset-item
+          id="neptune-model"
+          src="assets/neptune.glb" 
+          crossorigin="anonymous"
+        ></a-asset-item>
         <img
             id="text-bg-texture"
             src="assets/text-bg-texture.png" 
@@ -120,7 +125,7 @@
  camera 
  look-controls 
  wasd-controls="enabled: true" 
- position="0 0 0"
+ position="0 5 0"
   >
   <!--
   orbit-controls="
@@ -168,7 +173,7 @@
         ></a-entity>
         
   </a-entity>
-
+  
   <a-entity id="mercury" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
         
         <a-entity
@@ -176,7 +181,7 @@
           position="0 0 0"
           scale="0.5 0.5 0.5"
           gltf-model="#mercury-model"
-          planet= "a: 1"
+          planet= "a: 4,6; b: 6,9"
         ></a-entity>
         
   </a-entity>
@@ -188,11 +193,11 @@
           position="0 0 0"
           scale="0.5 0.5 0.5"
           gltf-model="#venus-model"
-          planet= "a: 2"
+          planet= "a: 10.7476; b: 10.8941 "
         ></a-entity>
         
   </a-entity>
-
+  -->
   <a-entity id="earth" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
         
         <a-entity
@@ -200,11 +205,11 @@
           position="0 0 0"
           scale="0.5 0.5 0.5"
           gltf-model="#earth-model"
-          planet= "a: 4"
+          planet= "b: 15.2098233; a: 14.7098291; timeToAroundSun: 365.25; rotationSpeed: 24"
         ></a-entity>
         
   </a-entity>
-
+  
   <a-entity id="mars" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
         
         <a-entity
@@ -212,7 +217,7 @@
           position="0 0 0"
           scale="0.5 0.5 0.5"
           gltf-model="#mars-model"
-          planet= "a: 6"
+          planet= "a: 24.923; b: 20.662"
         ></a-entity>
         
   </a-entity>
@@ -224,7 +229,7 @@
           position="0 0 0"
           scale="0.5 0.5 0.5"
           gltf-model="#jupiter-model"
-          planet= "a: 11"
+          planet= "a: 74.052; b: 81.662"
         ></a-entity>
         
   </a-entity>
@@ -236,7 +241,7 @@
           position="0 0 0"
           scale="0.5 0.5 0.5"
           gltf-model="#saturn-model"
-          planet= "a: 18"
+          planet= "a: 135.255; b: 151.450"
         ></a-entity>
         
   </a-entity>
@@ -248,13 +253,25 @@
           position="0 0 0"
           scale="0.5 0.5 0.5"
           gltf-model="#uranus-model"
-          planet= "a: 24"
+          planet= "a: 274.130; b: 300.362"
         ></a-entity>
         
   </a-entity>
 
+  <a-entity id="neptune" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
+        
+        <a-entity
+          id="model-neptune"
+          position="0 0 0"
+          scale="0.5 0.5 0.5"
+          gltf-model="#neptune-model"
+          planet= "a: 444.445; b: 454.567"
+        ></a-entity>
+        
+  </a-entity>
+  
   <!-- 360 panorama-->
-  <a-sky src="#sky-image" material="" geometry="radius: 100" scale="1 1 1" position="0 1.6 1" rotation="0 70 0" visible ="true"></a-sky>
+  <a-sky src="#sky-image" material="" geometry="radius: 1000" scale="1 1 1" position="0 0 0" rotation="0 70 0" visible ="true"></a-sky>
     
 
   </a-scene>
