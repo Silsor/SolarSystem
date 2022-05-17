@@ -13,16 +13,18 @@ AFRAME.registerComponent('planet', {
         x: { type: 'number', default: 10 },
         timeToAroundSun: {type: 'number', default: 1},
         rotationSpeed: { type: 'number', default: 2 },
+		hoursToRotate: { type: 'number', default: 24 },
         clock: {},
         duration: {type: 'number', default: 1},
-        t: {}
+        t: {},
+		constantrotator: {}
     },
 
     init: function () {
         this.data.model = this.el.object3D;
         this.data.clock = new THREE.Clock();
         this.data.t = 2 * Math.PI * Math.random()/earthYear * this.data.timeToAroundSun;
-		console.log(this.data.t);
+		this.data.constantrotator = (360 * 2 * Math.PI * 365 * this.data.hoursToRotate)/ (24* earthYear);
         console.log(this.el.name + " " + earthYear * this.data.timeToAroundSun);
     },
 
@@ -36,6 +38,6 @@ AFRAME.registerComponent('planet', {
         if (lastX > this.data.x) y *= -1;
 
         this.data.model.position.set(this.data.x, 0, y);
-        this.data.model.rotation.y += this.data.rotationSpeed;
+        this.data.model.rotation.y += this.data.constantrotator /delta;
     }
 });
