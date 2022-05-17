@@ -21,7 +21,8 @@ AFRAME.registerComponent('planet', {
     init: function () {
         this.data.model = this.el.object3D;
         this.data.clock = new THREE.Clock();
-        this.data.t = 0;
+        this.data.t = 2 * Math.PI * Math.random()/earthYear * this.data.timeToAroundSun;
+		console.log(this.data.t);
         console.log(this.el.name + " " + earthYear * this.data.timeToAroundSun);
     },
 
@@ -29,7 +30,7 @@ AFRAME.registerComponent('planet', {
         let delta = this.data.clock.getDelta();
         this.data.t += delta;
         let lastX = this.data.x;
-        this.data.x = Math.sin(this.data.t * earthYear * this.data.timeToAroundSun) * this.data.a;
+        this.data.x = Math.sin(this.data.t * earthYear / this.data.timeToAroundSun) * this.data.a;
         
         let y = Math.sqrt((1 - Math.pow(this.data.x, 2) / Math.pow(this.data.a, 2)) * Math.pow(this.data.b, 2));
         if (lastX > this.data.x) y *= -1;
