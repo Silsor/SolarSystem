@@ -12,10 +12,8 @@ AFRAME.registerComponent('planet', {
         b: { type: 'number', default: 5 }, // max odleglosc elipsy w osi y
         x: { type: 'number', default: 10 },
         timeToAroundSun: {type: 'number', default: 1},
-        rotationSpeed: { type: 'number', default: 2 },
 		hoursToRotate: { type: 'number', default: 24 },
         clock: {},
-        duration: {type: 'number', default: 1},
         t: {},
 		constantrotator: {}
     },
@@ -41,6 +39,6 @@ AFRAME.registerComponent('planet', {
         this.data.model.position.set(this.data.x, 0, y);
         this.data.model.rotation.y += this.data.constantrotator * delta * Math.PI / 180;
 		//this.data.model.rotation.y += delta /( 2 * Math.PI);
-		console.log(this.data.model.rotation);
+		//console.log(this.data.model.rotation);
     }
 });
