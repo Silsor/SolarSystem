@@ -37,8 +37,7 @@ AFRAME.registerComponent('planet', {
         if (lastX > this.data.x) y *= -1;
 
         this.data.model.position.set(this.data.x, 0, y);
-        this.data.model.rotation.y += this.data.constantrotator * delta * Math.PI / 180;
-		//this.data.model.rotation.y += delta /( 2 * Math.PI);
-		//console.log(this.data.model.rotation);
+        //this.data.model.rotation.y += this.data.constantrotator * delta * Math.PI / 180;
+		this.data.model.rotation.y += 10 * delta * Math.PI / this.data.hoursToRotate;
     }
 });
