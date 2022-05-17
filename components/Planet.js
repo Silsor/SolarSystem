@@ -24,7 +24,8 @@ AFRAME.registerComponent('planet', {
         this.data.model = this.el.object3D;
         this.data.clock = new THREE.Clock();
         this.data.t = 2 * Math.PI * Math.random()/earthYear * this.data.timeToAroundSun;
-		this.data.constantrotator = (360 * 2 * Math.PI * 365 * this.data.hoursToRotate)/ (24* earthYear);
+		this.data.constantrotator = (360  * 365 * earthYear * this.data.hoursToRotate)/ (24*2 * Math.PI);
+		console.log(this.data.constantrotator);
         console.log(this.el.name + " " + earthYear * this.data.timeToAroundSun);
     },
 
@@ -38,6 +39,8 @@ AFRAME.registerComponent('planet', {
         if (lastX > this.data.x) y *= -1;
 
         this.data.model.position.set(this.data.x, 0, y);
-        this.data.model.rotation.y += this.data.constantrotator /delta;
+        this.data.model.rotation.y += this.data.constantrotator * delta * Math.PI / 180;
+		//this.data.model.rotation.y += delta /( 2 * Math.PI);
+		console.log(this.data.model.rotation);
     }
 });
