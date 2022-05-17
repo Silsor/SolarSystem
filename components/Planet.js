@@ -20,6 +20,19 @@ AFRAME.registerComponent('planet', {
 
     init: function () {
         this.data.model = this.el.object3D;
+        this.el.addEventListener('model-loaded', () => 
+        {   
+            this.data.model.traverse(function(child){
+            if (child.material)
+                {
+                    child.material.roughness = 1;
+                    child.material.metallic = 0;
+                    child.material.needsUpdate = true;
+                    console.log(child.material);
+                }
+            });
+        });
+
         this.data.clock = new THREE.Clock();
         this.data.t = 2 * Math.PI * Math.random()/earthYear * this.data.timeToAroundSun;
 		this.data.constantrotator = (360  * 365 * earthYear * this.data.hoursToRotate)/ (24*2 * Math.PI);
