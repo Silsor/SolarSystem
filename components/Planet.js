@@ -13,6 +13,7 @@ AFRAME.registerComponent('planet', {
         x: { type: 'number', default: 10 },
         timeToAroundSun: {type: 'number', default: 1},
 		hoursToRotate: { type: 'number', default: 24 },
+        axialTilt:{ type: 'number', default: 0 },
         clock: {},
         t: {},
 		constantrotator: {}
@@ -20,6 +21,7 @@ AFRAME.registerComponent('planet', {
 
     init: function () {
         this.data.model = this.el.object3D;
+        this.data.model.rotation.x = this.data.axialTilt * Math.PI/180;
         this.el.addEventListener('model-loaded', () => 
         {   
             this.data.model.traverse(function(child){

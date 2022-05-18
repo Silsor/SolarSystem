@@ -112,14 +112,6 @@
         />
       </a-assets>
   
-
- <!-- Default lighting injected by A-Frame. -->
- <a-entity light="type: point; intensity: 1; distance: 0; decay: 1.0"
-          position="0 0 0"></a-entity>
- 
- 
-
-
  <!-- Camera -->
  <a-entity id="camera" 
  camera 
@@ -162,6 +154,12 @@
         
   </a-entity>
   -->
+  <a-entity id="solar_system" ar-mode-setup>
+
+    <!-- Default lighting injected by A-Frame. -->
+    <a-entity light="type: point; color: #fdfbd3; intensity: 1; distance: 0; decay: 1.0" position="0 0 0"></a-entity>
+    <a-entity light="type: ambient; color: #fdfbd3; intensity: 0.02"></a-entity>
+
   <a-entity id="sun" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
         
         <a-entity
@@ -179,9 +177,9 @@
         <a-entity
           id="model-mercury"
           position="0 0 0"
-          scale="0.5 0.5 0.5"
+          scale="1 1 1"
           gltf-model="#mercury-model"
-          planet= "a: 4.6; b: 6.9; timeToAroundSun: 0.241; hoursToRotate:1407"
+          planet= "a: 4.6; b: 6.9; timeToAroundSun: 0.241; hoursToRotate:1407; axialTilt: 0.034"
         ></a-entity>
         
   </a-entity>
@@ -191,9 +189,9 @@
         <a-entity
           id="model-venus"
           position="0 0 0"
-          scale="0.5 0.5 0.5"
+          scale="1 1 1"
           gltf-model="#venus-model"
-          planet= "a: 8.7476; b: 8.8941; timeToAroundSun: 0.615; hoursToRotate: -5832"
+          planet= "a: 8.7476; b: 8.8941; timeToAroundSun: 0.615; hoursToRotate: -5832; axialTilt: 2.64"
         ></a-entity>
         
   </a-entity>
@@ -203,9 +201,9 @@
         <a-entity
           id="model-earth"
           position="0 0 0"
-          scale="0.5 0.5 0.5"
+          scale="1 1 1"
           gltf-model="#earth-model"
-          planet= "a: 10.7098291; b: 11.2098233; rotationSpeed: 24"
+          planet= "a: 10.7098291; b: 11.2098233; rotationSpeed: 24; axialTilt: 23.43"
         ></a-entity>
         
   </a-entity>
@@ -215,9 +213,9 @@
         <a-entity
           id="model-mars"
           position="0 0 0"
-          scale="0.5 0.5 0.5"
+          scale="1 1 1"
           gltf-model="#mars-model"
-          planet= "a: 14.662; b: 15.923; timeToAroundSun: 1.881; hoursToRotate: 24.5"
+          planet= "a: 14.662; b: 15.923; timeToAroundSun: 1.881; hoursToRotate: 24.5; axialTilt: 25.19"
         ></a-entity>
         
   </a-entity>
@@ -227,9 +225,9 @@
         <a-entity
           id="model-jupiter"
           position="0 0 0"
-          scale="0.5 0.5 0.5"
+          scale="0.3 0.3 0.3"
           gltf-model="#jupiter-model"
-          planet= "a: 23.052; b: 24.862; timeToAroundSun: 11.862; hoursToRotate: 10"
+          planet= "a: 23.052; b: 24.862; timeToAroundSun: 11.862; hoursToRotate: 10; axialTilt: 3.13"
         ></a-entity>
         
   </a-entity>
@@ -239,9 +237,9 @@
         <a-entity
           id="model-saturn"
           position="0 0 0"
-          scale="0.5 0.5 0.5"
+          scale="0.3 0.3 0.3"
           gltf-model="#saturn-model"
-          planet= "a: 35.655; b: 36.750; timeToAroundSun: 29.457; hoursToRotate: 11"
+          planet= "a: 35.655; b: 36.750; timeToAroundSun: 29.457; hoursToRotate: 11; axialTilt: 26.73"
         ></a-entity>
         
   </a-entity>
@@ -253,7 +251,7 @@
           position="0 0 0"
           scale="0.5 0.5 0.5"
           gltf-model="#uranus-model"
-          planet= "a: 45.130; b: 48.362; timeToAroundSun: 84.011; hoursToRotate: -17"
+          planet= "a: 45.130; b: 48.362; timeToAroundSun: 84.011; hoursToRotate: -17; axialTilt: 82.23"
         ></a-entity>
         
   </a-entity>
@@ -265,11 +263,11 @@
           position="0 0 0"
           scale="0.5 0.5 0.5"
           gltf-model="#neptune-model"
-          planet= "a: 55.225; b: 56.587; timeToAroundSun: 164.79; hoursToRotate: 16"
+          planet= "a: 55.225; b: 56.587; timeToAroundSun: 164.79; hoursToRotate: 16; axialTilt: 1.769"
         ></a-entity>
         
   </a-entity>
-  
+  </a-entity>
   <!-- 360 panorama-->
   <a-sky src="#sky-image" material="" geometry="radius: 1000" scale="1 1 1" position="0 0 0" rotation="0 70 0" visible ="true"></a-sky>
     
