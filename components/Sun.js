@@ -3,8 +3,14 @@
   //----------------------------------------------------------------------------------
   
   AFRAME.registerComponent('sun', {
+      schema:
+        {
+            clock: {}
+        },
+
       init: function () 
       {
+        this.data.clock = new THREE.Clock();
         //console.log("modify init");
         // Wait for model to load.
         this.el.addEventListener('model-loaded', () => 
@@ -27,5 +33,12 @@
                 }
             });
         });
-      }   
+      },
+      
+      tick: function () {
+        let delta = this.data.clock.getDelta();
+        this.data.t += delta;
+        
+		this.el.object3D.rotation.y += earthYear * 100 * delta / (25 * 24); //okres obrotu slonca wynosi 25 ziemskich dni
+    }
   });
