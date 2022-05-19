@@ -72,7 +72,7 @@
         ></a-asset-item>
         <a-asset-item
           id="earth-model"
-          src="assets/earth1.glb" 
+          src="assets/earth_with_clouds2.glb" 
           crossorigin="anonymous"
         ></a-asset-item>
         <a-asset-item
@@ -114,21 +114,19 @@
   
  <!-- Camera -->
  <a-entity id="camera" 
- camera 
- look-controls 
- wasd-controls="enabled: true" 
- position="0 2.5 0"
-  >
-  <!--
-  orbit-controls="
+    camera 
+    orbit-controls="
           autoRotate: false;
-          target: #model-interactive;
+          target: #camera_target;
           enableDamping: true;
           dampingFactor: 0.125;
           rotateSpeed:0.25;
           minDistance:3;
           maxDistance:20;"
-  -->
+    position="0 30 0"
+  >
+  
+  
   <a-entity id="cursor" raycaster="far: 20; interval: 250; objects: .clickable; enabled: false"
           scale="0 0 0"
           material="color: #04FEFB; shader: flat"
@@ -154,6 +152,9 @@
         
   </a-entity>
   -->
+
+  <a-entity id="camera_target" position="0 0 0"></a-entity>
+
   <a-entity id="solar_system" ar-mode-setup>
 
     <!-- Default lighting injected by A-Frame. -->
@@ -195,7 +196,7 @@
         ></a-entity>
         
   </a-entity>
-  -->
+  
   <a-entity id="earth" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
         
         <a-entity
@@ -207,7 +208,7 @@
         ></a-entity>
         
   </a-entity>
-  
+
   <a-entity id="mars" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
         
         <a-entity
@@ -278,15 +279,16 @@
       <i class="fa fa-bars fa-2x"></i>
     </button>
 
-    <div id="info">
-      <h2>nazwa <br />zawodu</h2>
-      <h1>obiekt</h1>
-      
-      <h3>Tytuł h3<br/></h3>
+    <div class="slidecontainer">
+    <p>Default range slider:</p>
+    <input type="range" min="1" max="100" value="50">
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus feugiat tellus eros, non efficitur neque bibendum eu. 
-        Donec pretium sodales diam a blandit. Curabitur imperdiet lobortis efficitur. Nulla hendrerit leo sit amet vulputate efficitur. 
-        Vestibulum vitae tincidunt mi. Sed ullamcorper metus quam, id aliquet lorem finibus quis.</p>
+    <div id="info">
+      <h2>OPCJE</h2>
+        
+        <p>Szybkość poruszania planet:</p>
+        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+        <p>Jeden ziemski rok w przeciągu <span id="demo"></span> sekund.</p>
 
       <p>
         <button id="btn_reload" hidden><i class="fas fa-redo-alt"></i></button>

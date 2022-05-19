@@ -2,7 +2,8 @@
 //--- Sun
 //----------------------------------------------------------------------------------
 
-var earthYear = 2 * Math.PI / 10;
+var animationSpeed = 50.0;
+var earthYear = 2 * Math.PI / animationSpeed;
 AFRAME.registerComponent('planet', {
 
     schema:
@@ -16,7 +17,7 @@ AFRAME.registerComponent('planet', {
         axialTilt:{ type: 'number', default: 0 },
         clock: {},
         t: {},
-		constantrotator: {}
+		//constantrotator: {} zmienna, uzaleznia predkosc obrotu planety od dlugosci okresu orbity
     },
 
     init: function () {
@@ -30,16 +31,21 @@ AFRAME.registerComponent('planet', {
                     child.material.roughness = 1;
                     child.material.metallic = 0;
                     child.material.needsUpdate = true;
-                    console.log(child.material);
+                    //console.log(child.material);
                 }
             });
         });
 
         this.data.clock = new THREE.Clock();
         this.data.t = 2 * Math.PI * Math.random()/earthYear * this.data.timeToAroundSun;
-		this.data.constantrotator = (360  * 365 * earthYear * this.data.hoursToRotate)/ (24*2 * Math.PI);
-		console.log(this.data.constantrotator);
-        console.log(this.el.name + " " + earthYear * this.data.timeToAroundSun);
+		//this.data.constantrotator = (360 * 365 * earthYear * this.data.hoursToRotate)/ (24*2 * Math.PI);
+
+        this.el.addEventListener('changeSliderValue', () => 
+        {   
+            console.log();
+        });
+		//console.log(this.data.constantrotator);
+        //console.log(this.el.name + " " + earthYear * this.data.timeToAroundSun);
     },
 
     tick: function () {
@@ -53,6 +59,6 @@ AFRAME.registerComponent('planet', {
 
         this.data.model.position.set(this.data.x, 0, y);
         //this.data.model.rotation.y += this.data.constantrotator * delta * Math.PI / 180;
-		this.data.model.rotation.y += 10 * delta * Math.PI / this.data.hoursToRotate;
+		this.data.model.rotation.y += earthYear * 100 * delta / this.data.hoursToRotate;
     }
 });

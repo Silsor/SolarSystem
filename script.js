@@ -56,7 +56,7 @@ AFRAME.registerComponent("hide-in-ar-mode", {
   // Set camera position while in AR mode.
     init: function (){
  
-      let modelDOM = document.getElementById("modelDOM");
+      let solarSystem = document.getElementById("solar_system");
       let cursor = document.getElementById("cursor");
       let camera = document.getElementById("camera");
         
@@ -71,12 +71,14 @@ AFRAME.registerComponent("hide-in-ar-mode", {
         //Transformations are applied to entities in this order:
         //modelDOM.object3D.scale.set(0.8, 0.8, 0.8);
         //modelDOM.object3D.rotation.set(0, 30, 0);
-        //modelDOM.object3D.position.set(0.5, 0, -1.5);
+        camera.object3D.position.set(0,10,0);
 
         document.querySelector('a-sky').setAttribute('visible', true);
   
         if (this.el.sceneEl.is('ar-mode')) {
             document.querySelector('a-sky').setAttribute('visible', false);
+            solarSystem.setAttribute('scale', '0.05 0.05 0.05');
+            solarSystem.object3D.position.set( 0, 1.2, -2);
         }
       });
               
@@ -105,15 +107,25 @@ AFRAME.registerComponent("hide-in-ar-mode", {
   });
   
   //----------------------------------------------------------------------------------
-  //--- Evants for 2D elements
+  //--- Events for 2D elements
   //----------------------------------------------------------------------------------
   document.addEventListener('DOMContentLoaded', function() {
     const toggle = document.getElementById('toggle');
     const scene = document.querySelector('a-scene');
-  
+    const slider = document.getElementById("myRange");
+    var output = document.getElementById("demo");
+    output.innerHTML = slider.value;
+
     toggle.addEventListener('click', () =>
       document.getElementById("info").classList.toggle('show-info')
     ); 
+    
+    slider.oninput = function() {
+        animationSpeed = this.value;
+        earthYear = 2 * Math.PI / animationSpeed;
+        output.innerHTML = this.value;
+        scene.emit('changeSliderValue', '', false);
+    }
     
   });
   

@@ -13,7 +13,6 @@
             obj.traverse(function(child){
             if (child.material)
                 {
-                    console.log(child.material);
                     /*let standard = THREE.ShaderLib['standard'];
                     let customMaterial = new THREE.ShaderMaterial('sun-shader','');
                     customMaterial.uniforms.diffuse = new THREE.Color('white');
@@ -21,9 +20,9 @@
                     customMaterial.uniforms.metalness = 0;
                     customMaterial.needsUpdate = true;
                     child.material = customMaterial;*/
-                    console.log(child.material);
+                    //console.log(child.material);
                     child.material.emissiveIntensity = 3;
-                    child.material.roughness = 0;
+                    child.material.roughness = 1;
                     child.material.needsUpdate = true;
                 }
             });
