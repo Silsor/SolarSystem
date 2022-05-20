@@ -113,7 +113,8 @@ AFRAME.registerComponent("hide-in-ar-mode", {
     const toggle = document.getElementById('toggle');
     const scene = document.querySelector('a-scene');
     const slider = document.getElementById("myRange");
-    var output = document.getElementById("demo");
+    const checkboxSwitch = document.getElementById('checkboxSwitch');
+    var output = document.getElementById("sliderValue");
     output.innerHTML = slider.value;
 
     toggle.addEventListener('click', () =>
@@ -124,9 +125,11 @@ AFRAME.registerComponent("hide-in-ar-mode", {
         animationSpeed = this.value;
         earthYear = 2 * Math.PI / animationSpeed;
         output.innerHTML = this.value;
-        scene.emit('changeSliderValue', '', false);
-    }
-    
+    };
+
+    checkboxSwitch.oninput = function() {
+        animationPlaying = checkboxSwitch.checked;
+    };
   });
   
   

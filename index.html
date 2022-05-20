@@ -286,13 +286,15 @@
     <div id="info">
       <h2>OPCJE</h2>
         
-        <p>Szybkość poruszania planet:</p>
+        <p><b>Szybkość poruszania planet:</b></p>
         <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-        <p>Jeden ziemski rok w przeciągu <span id="demo"></span> sekund.</p>
-
-      <p>
-        <button id="btn_reload" hidden><i class="fas fa-redo-alt"></i></button>
-      </p>
+        <p>Jeden ziemski rok w przeciągu <span id="sliderValue"></span> sekund.</p>
+        <!-- <button class="btn"><i class="fa fa-pause"></i> Pauza</button> przycisk pauzy -->
+        <p><b>Ruch planet:</b></p>
+        <label class="switch">
+        <input type="checkbox" checked id="checkboxSwitch">
+        <span class="sliderSwitch round"></span>
+        </label>
       
 
       <p>
