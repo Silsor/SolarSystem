@@ -42,7 +42,12 @@ AFRAME.registerComponent('planet', {
 
         this.el.addEventListener('changeSliderValue', () => 
         {   
-            console.log();
+            console.log("aa");
+        });
+
+        this.el.addEventListener('click', () => 
+        {   
+            this.el.setAttribute("description", 'name', this.el.id);
         });
 		//console.log(this.data.constantrotator);
         //console.log(this.el.name + " " + earthYear * this.data.timeToAroundSun);

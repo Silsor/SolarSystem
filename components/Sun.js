@@ -33,6 +33,11 @@
                 }
             });
         });
+
+        this.el.addEventListener('click', () => 
+        {   
+            this.el.setAttribute("description", 'name', this.el.id);
+        });
       },
       
       tick: function () {

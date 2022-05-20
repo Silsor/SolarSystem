@@ -38,6 +38,7 @@
     <script src="../components/OrbitControls.js"></script>
     <script src="../components/Sun.js"></script>
     <script src="../components/Planet.js"></script>
+    <script src="../components/Description.js"></script>
 
     <script src="script.js"></script>
 
@@ -164,11 +165,12 @@
   <a-entity id="sun" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
         
         <a-entity
-          id="model-sun"
+          id="Słońce"
           position="0 0 0"
           scale="0.05 0.05 0.05"
           gltf-model="#sun-model"
           sun
+          class= "clickable"
         ></a-entity>
         
   </a-entity>
@@ -176,11 +178,13 @@
   <a-entity id="mercury" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
         
         <a-entity
-          id="model-mercury"
+          id="Merkury"
           position="0 0 0"
           scale="1 1 1"
           gltf-model="#mercury-model"
           planet= "a: 4.6; b: 6.9; timeToAroundSun: 0.241; hoursToRotate:1407; axialTilt: 0.034"
+          class="clickable"
+          description="info:W atmosferze wykryto także śladowe ilości wielu gazów m. in. argonu i kryptonu."
         ></a-entity>
         
   </a-entity>
@@ -188,7 +192,7 @@
   <a-entity id="venus" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
         
         <a-entity
-          id="model-venus"
+          id="Wenus"
           position="0 0 0"
           scale="1 1 1"
           gltf-model="#venus-model"
@@ -200,7 +204,7 @@
   <a-entity id="earth" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
         
         <a-entity
-          id="model-earth"
+          id="Ziemia"
           position="0 0 0"
           scale="1 1 1"
           gltf-model="#earth-model"
@@ -212,7 +216,7 @@
   <a-entity id="mars" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
         
         <a-entity
-          id="model-mars"
+          id="Mars"
           position="0 0 0"
           scale="1 1 1"
           gltf-model="#mars-model"
@@ -224,7 +228,7 @@
   <a-entity id="jupiter" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
         
         <a-entity
-          id="model-jupiter"
+          id="Jowisz"
           position="0 0 0"
           scale="0.3 0.3 0.3"
           gltf-model="#jupiter-model"
@@ -236,7 +240,7 @@
   <a-entity id="saturn" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
         
         <a-entity
-          id="model-saturn"
+          id="Saturn"
           position="0 0 0"
           scale="0.3 0.3 0.3"
           gltf-model="#saturn-model"
@@ -248,7 +252,7 @@
   <a-entity id="uranus" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
         
         <a-entity
-          id="model-uranus"
+          id="Uran"
           position="0 0 0"
           scale="0.5 0.5 0.5"
           gltf-model="#uranus-model"
@@ -260,7 +264,7 @@
   <a-entity id="neptune" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
         
         <a-entity
-          id="model-neptune"
+          id="Neptun"
           position="0 0 0"
           scale="0.5 0.5 0.5"
           gltf-model="#neptune-model"
@@ -278,10 +282,6 @@
     <button id="toggle" class="toggle">
       <i class="fa fa-bars fa-2x"></i>
     </button>
-
-    <div class="slidecontainer">
-    <p>Default range slider:</p>
-    <input type="range" min="1" max="100" value="50">
 
     <div id="info">
       <h2>OPCJE</h2>
