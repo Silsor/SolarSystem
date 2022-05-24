@@ -61,17 +61,10 @@ AFRAME.registerComponent("hide-in-ar-mode", {
       let camera = document.getElementById("camera");
         
       this.el.sceneEl.addEventListener('enter-vr', (ev) => {
-        this.el.sceneEl.removeAttribute("cursor");
-  
-        cursor.setAttribute('visible', true);
-        cursor.setAttribute('cursor','fuse: true; fuseTimeout: 1500');
-        cursor.setAttribute('animation__click', "property: scale; startEvents: click; easing: easeInOutCubic; dur: 250; from: 0.8 0.8 0.8; to: 1.0 1.0 1.0 ");
-        //this.el.emit('click', {}, false);
-        cursor.setAttribute('raycaster', "enabled: true");
+        
         //Transformations are applied to entities in this order:
         //modelDOM.object3D.scale.set(0.8, 0.8, 0.8);
         //modelDOM.object3D.rotation.set(0, 30, 0);
-        camera.object3D.position.set(0,10,0);
 
         document.querySelector('a-sky').setAttribute('visible', true);
   
@@ -79,6 +72,14 @@ AFRAME.registerComponent("hide-in-ar-mode", {
             document.querySelector('a-sky').setAttribute('visible', false);
             solarSystem.setAttribute('scale', '0.05 0.05 0.05');
             solarSystem.object3D.position.set( 0, 1.2, -2);
+        } else
+        {
+            this.el.sceneEl.removeAttribute("cursor");
+  
+            cursor.setAttribute('visible', true);
+            cursor.setAttribute('cursor','fuse: true; fuseTimeout: 1500');
+            cursor.setAttribute('animation__click', "property: scale; startEvents: click; easing: easeInOutCubic; dur: 250; from: 0.8 0.8 0.8; to: 1.0 1.0 1.0 ");
+            cursor.setAttribute('raycaster', "enabled: true");
         }
       });
               
@@ -89,7 +90,8 @@ AFRAME.registerComponent("hide-in-ar-mode", {
         cursor.setAttribute('raycaster', "enabled: false");
            
         document.querySelector('a-sky').setAttribute('visible', true);
-       
+        solarSystem.setAttribute('scale', '1 1 1');
+        solarSystem.object3D.position.set( 0, 0, 0);
       });
     }
   });
