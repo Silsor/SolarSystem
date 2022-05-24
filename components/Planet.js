@@ -3,6 +3,7 @@
 //----------------------------------------------------------------------------------
 
 var animationSpeed = 50.0;
+var animationPlaying = true;
 var earthYear = 2 * Math.PI / animationSpeed;
 AFRAME.registerComponent('planet', {
 
@@ -40,11 +41,6 @@ AFRAME.registerComponent('planet', {
         this.data.t = 2 * Math.PI * Math.random()/earthYear * this.data.timeToAroundSun;
 		//this.data.constantrotator = (360 * 365 * earthYear * this.data.hoursToRotate)/ (24*2 * Math.PI);
 
-        this.el.addEventListener('changeSliderValue', () => 
-        {   
-            console.log("aa");
-        });
-
         this.el.addEventListener('click', () => 
         {   
             this.el.setAttribute("description", 'name', this.el.id);
@@ -54,6 +50,11 @@ AFRAME.registerComponent('planet', {
     },
 
     tick: function () {
+    if (!animationPlaying) 
+    {
+        if (this.data.clock.running) this.data.clock.stop();
+        return;
+    }   if (!this.data.clock.running) this.data.clock.start();
         let delta = this.data.clock.getDelta();
         this.data.t += delta;
         let lastX = this.data.x;

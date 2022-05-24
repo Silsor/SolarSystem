@@ -33,14 +33,14 @@
                 }
             });
         });
-
-        this.el.addEventListener('click', () => 
-        {   
-            this.el.setAttribute("description", 'name', this.el.id);
-        });
       },
       
       tick: function () {
+      if (!animationPlaying) 
+        {
+            if (this.data.clock.running) this.data.clock.stop();
+            return;
+        }   if (!this.data.clock.running) this.data.clock.start();
         let delta = this.data.clock.getDelta();
         this.data.t += delta;
         
