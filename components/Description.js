@@ -20,7 +20,7 @@ AFRAME.registerComponent('description', {
         objectInfo: {}
     },
     init: function(){
-    console.log("init from " + this.el.id);
+    //console.log("init from " + this.el.id);
 
     this.el.addEventListener('click', () => 
         {   
@@ -34,7 +34,6 @@ AFRAME.registerComponent('description', {
                 showing = true;
                 object.data.objectInfo.object3D.visible = true; 
                 object.data.objectInfo.classList.add("clickable");
-                console.log(showing);
             }
      }
     },
@@ -43,16 +42,14 @@ AFRAME.registerComponent('description', {
     update: function(oldData){  
         if(this.data.name != oldData.name && this.data.name != ""){
             
-            console.log("update from " + this.data.name);
+            //console.log("update from " + this.data.name);
             let clearPartName = this.data.name.split("_");
             let partName = clearPartName[0].replaceAll('-', ' ');
             
             // show part name
             let text = `${partName.toUpperCase()}` + "\n" + this.data.info;
             let match = text.match(/.{1,18}/g); //how many lines
-            //let offsetTXT = 1;
-          console.log(match.length);
-            const geometry = new THREE.PlaneGeometry(1.5, 2);
+            const geometry = new THREE.PlaneGeometry(1.5, 0.08 * match.length);
             const loader = new THREE.TextureLoader();
 
             const material = new THREE.MeshBasicMaterial({
@@ -81,22 +78,12 @@ AFRAME.registerComponent('description', {
             entityEl.setAttribute('overlay');
             if (!showing) entityEl.classList.add("clickable");
 
-            //calculate offset of texture to make decor line the same height            
-           // const { material1, geometry1 } = entityEl.getObject3D('mesh');
-            //material.map.offset.y = (match.length==1) ? 0: -0.05*0.1*match.length;
             material.needsUpdate = true;
 
             document.querySelector('[camera]').appendChild(entityEl);
             entityEl.object3D.position.set(0, 0.015, -0.05);
-            entityEl.setAttribute('animation', {
-                property: 'material.opacity',
-                from: 0,
-                to: 1,
-                dur: 250,
-                easing: 'easeOutCubic'
-            });
+         
             this.data.objectInfo = entityEl;
-            console.log(this.data.objectInfo);
             this.data.objectInfo.addEventListener('click', () => { hideInfo(this.data.objectInfo)});
         }
 
@@ -106,13 +93,5 @@ AFRAME.registerComponent('description', {
             infoObj.object3D.visible = false;
             infoObj.classList.remove("clickable");
         }
-    },
-  
-    // Remove the line geometry.
-    remove: function(){
-        this.entityEl.setAttribute('animation', {
-            to: 0
-        });
-        this.entityEl.parentNode.removeChild(this.entityEl);  
-     }
+    }
   });
