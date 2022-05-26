@@ -27,14 +27,8 @@
 
     <!-- import the webpage's javascript files -->
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-    <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
-    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
-
-    <script src="../components/PointedModelPart.js"></script>
-    <script src="../components/HighlightShader.js"></script>
-    <script src="../components/PartName.js"></script>
-    <script src="../components/ModelPart.js"></script>
+    <script src="https://immersive-web.github.io/dom-overlays/"></script>
+    
     <script src="../components/OrbitControls.js"></script>
     <script src="../components/Sun.js"></script>
     <script src="../components/Planet.js"></script>
@@ -49,6 +43,8 @@
     renderer="colorManagement: true, physicallyCorrectLights: true; antialias: true; logarithmicDepthBuffer: false; sortObjects: true;"
     shadow="type: pcfsoft; autoUpdate: false;"
     light="defaultLightsEnabled: true"
+    webxr="optionalFeatures: dom-overlay;
+                overlayElement: #overlay;"
     >
       <a-assets timeout="30000">
         <a-asset-item
@@ -127,7 +123,7 @@
     position="0 7.1 7.5"
   >
   
-  
+  <!--
   <a-entity id="cursor" raycaster="far: 20; interval: 250; objects: .clickable; enabled: false"
           scale="0 0 0"
           material="color: #04FEFB; shader: flat"
@@ -135,24 +131,8 @@
           geometry="primitive: ring; radius-inner: 0.003; radius-outer: 0.005"
           visible="false">
   </a-entity>
-
-</a-entity>
-<!--
-<a-entity id="modelDOM" position="0 .2 -0.4" rotation="0 5 0"  ar-mode-setup >
-        
-        <a-entity
-          id="model-interactive"
-          position="0 0 0"
-          scale="0.005 0.005 0.005"
-          gltf-model="#source-model"
-          class="clickable"
-          model-part
-          shadow = "receive: true"
-          modify-model
-        ></a-entity>
-        
-  </a-entity>
   -->
+</a-entity>
 
   <a-entity id="camera_target" position="0 0 0"></a-entity>
 
@@ -162,7 +142,7 @@
     <a-entity light="type: point; color: #fdfbd3; intensity: 1; distance: 0; decay: 1.0" position="0 0 0"></a-entity>
     <a-entity light="type: ambient; color: #fdfbd3; intensity: 0.02"></a-entity>
 
-  <a-entity id="sun" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
+  <a-entity id="sun" position="0 0 0" rotation="0 0 0">
         
         <a-entity
           id="Słońce"
@@ -175,7 +155,7 @@
         
   </a-entity>
   
-  <a-entity id="mercury" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
+  <a-entity id="mercury" position="0 0 0" rotation="0 0 0">
         
         <a-entity
           id="Merkury"
@@ -189,7 +169,7 @@
         
   </a-entity>
 
-  <a-entity id="venus" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
+  <a-entity id="venus" position="0 0 0" rotation="0 0 0">
         
         <a-entity
           id="Wenus"
@@ -203,7 +183,7 @@
         
   </a-entity>
   
-  <a-entity id="earth" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
+  <a-entity id="earth" position="0 0 0" rotation="0 0 0">
         
         <a-entity
           id="Ziemia"
@@ -215,7 +195,7 @@
         
   </a-entity>
 
-  <a-entity id="mars" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
+  <a-entity id="mars" position="0 0 0" rotation="0 0 0">
         
         <a-entity
           id="Mars"
@@ -229,7 +209,7 @@
         
   </a-entity>
 
-  <a-entity id="jupiter" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
+  <a-entity id="jupiter" position="0 0 0" rotation="0 0 0">
         
         <a-entity
           id="Jowisz"
@@ -243,7 +223,7 @@
         
   </a-entity>
 
-  <a-entity id="saturn" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
+  <a-entity id="saturn" position="0 0 0" rotation="0 0 0">
         
         <a-entity
           id="Saturn"
@@ -257,7 +237,7 @@
         
   </a-entity>
 
-  <a-entity id="uranus" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
+  <a-entity id="uranus" position="0 0 0" rotation="0 0 0">
         
         <a-entity
           id="Uran"
@@ -271,7 +251,7 @@
         
   </a-entity>
 
-  <a-entity id="neptune" position="0 0 0" rotation="0 0 0"  ar-mode-setup >
+  <a-entity id="neptune" position="0 0 0" rotation="0 0 0">
         
         <a-entity
           id="Neptun"
@@ -286,12 +266,13 @@
   </a-entity>
   </a-entity>
   <!-- 360 panorama-->
-  <a-sky src="#sky-image" material="" geometry="radius: 1000" scale="1 1 1" position="0 0 0" rotation="0 70 0" visible ="true"></a-sky>
+  <a-sky src="#sky-image" material="" geometry="radius: 1000" scale="1 1 1" position="0 0 0" rotation="0 70 0" visible ="true" hide-on-enter-ar></a-sky>
     
 
   </a-scene>
     
-    <button id="toggle" class="toggle">
+  <div id ="overlay">
+    <button id="toggle" class="toggle" dom-overlay>
       <i class="fa fa-bars fa-2x"></i>
     </button>
 
@@ -322,6 +303,6 @@
       
     
     </div>
-
+    </div>
   </body>
 </html>
