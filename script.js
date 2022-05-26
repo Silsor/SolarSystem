@@ -62,36 +62,28 @@ AFRAME.registerComponent("hide-in-ar-mode", {
         
       this.el.sceneEl.addEventListener('enter-vr', (ev) => {
         
-        //Transformations are applied to entities in this order:
-        //modelDOM.object3D.scale.set(0.8, 0.8, 0.8);
-        //modelDOM.object3D.rotation.set(0, 30, 0);
-
-        document.querySelector('a-sky').setAttribute('visible', true);
-  
-        if (this.el.sceneEl.is('ar-mode')) {
-            document.querySelector('a-sky').setAttribute('visible', false);
+        //if (this.el.sceneEl.is('ar-mode')) {}
             solarSystem.setAttribute('scale', '0.05 0.05 0.05');
-            solarSystem.object3D.position.set( 0, 1.2, -2);
-        } else
-        {
-            this.el.sceneEl.removeAttribute("cursor");
-  
-            cursor.setAttribute('visible', true);
-            cursor.setAttribute('cursor','fuse: true; fuseTimeout: 1500');
-            cursor.setAttribute('animation__click', "property: scale; startEvents: click; easing: easeInOutCubic; dur: 250; from: 0.8 0.8 0.8; to: 1.0 1.0 1.0 ");
-            cursor.setAttribute('raycaster', "enabled: true");
-        }
+            solarSystem.object3D.position.set( 0, 1.2, -0.5);
+            camera.removeAttribute('cursor');
+            camera.setAttribute('raycaster','enabled: false');
+            cursor.setAttribute('cursor', 'fuse: true');
+            cursor.setAttribute('cursor','rayOrigin: entity');
+            cursor.setAttribute('raycaster','enabled: true');
+            cursor.object3D.visible = true;
       });
               
       
       this.el.sceneEl.addEventListener('exit-vr', (ev) => {
-        this.el.sceneEl.setAttribute('cursor', 'rayOrigin', 'mouse');  
-        cursor.setAttribute('visible', false);
-        cursor.setAttribute('raycaster', "enabled: false");
-           
-        document.querySelector('a-sky').setAttribute('visible', true);
         solarSystem.setAttribute('scale', '1 1 1');
         solarSystem.object3D.position.set( 0, 0, 0);
+        camera.object3D.position.set(0, 7.1, 7.5);
+        cursor.removeAttribute('cursor');
+        cursor.setAttribute('raycaster','enabled: false');
+        camera.setAttribute('cursor', 'fuse: false');
+        camera.setAttribute('cursor','rayOrigin: mouse');
+        camera.setAttribute('raycaster','enabled: true');
+        cursor.object3D.visible = false;
       });
     }
   });

@@ -28,7 +28,7 @@
     <!-- import the webpage's javascript files -->
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <script src="https://immersive-web.github.io/dom-overlays/"></script>
-    
+
     <script src="../components/OrbitControls.js"></script>
     <script src="../components/Sun.js"></script>
     <script src="../components/Planet.js"></script>
@@ -38,8 +38,9 @@
 
                                                                                                        
   </head>
+  <!-- clipboard raycaster="objects: .clickable;" cursor="rayOrigin: mouse"        -->
   <body>
-    <a-scene color-space="sRGB" raycaster="objects: .clickable;" cursor="rayOrigin: mouse" 
+    <a-scene color-space="sRGB" 
     renderer="colorManagement: true, physicallyCorrectLights: true; antialias: true; logarithmicDepthBuffer: false; sortObjects: true;"
     shadow="type: pcfsoft; autoUpdate: false;"
     light="defaultLightsEnabled: true"
@@ -47,11 +48,6 @@
                 overlayElement: #overlay;"
     >
       <a-assets timeout="30000">
-        <a-asset-item
-          id="source-model"
-          src="assets/solar system.glb" 
-          crossorigin="anonymous"
-        ></a-asset-item>
         <a-asset-item
           id="sun-model"
           src="assets/sun1.glb" 
@@ -112,6 +108,8 @@
  <!-- Camera -->
  <a-entity id="camera" 
     camera 
+    cursor="rayOrigin: mouse"
+    raycaster="objects: .clickable;"
     orbit-controls="
           autoRotate: false;
           target: #camera_target;
@@ -122,16 +120,17 @@
           maxDistance:20;"
     position="0 7.1 7.5"
   >
-  
-  <!--
-  <a-entity id="cursor" raycaster="far: 20; interval: 250; objects: .clickable; enabled: false"
-          scale="0 0 0"
-          material="color: #04FEFB; shader: flat"
-          position="0 0 -0.3"
-          geometry="primitive: ring; radius-inner: 0.003; radius-outer: 0.005"
-          visible="false">
-  </a-entity>
-  -->
+  <a-entity id= "cursor" 
+  position="0 0 -.01" 
+  scale="0.03 0.03 0.03"
+  geometry="primitive: ring; radius-inner: 0.003; radius-outer: 0.005"
+  material="color: #04FEFB; shader: flat"
+  raycaster="objects: .clickable; enabled: false"
+  visible="false"
+  animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 0.03 0.03 0.03"
+  animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 0.03 0.03 0.03; to: 0.001 0.001 0.001"
+  animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 0.03 0.03 0.03"
+  ></a-entity>
 </a-entity>
 
   <a-entity id="camera_target" position="0 0 0"></a-entity>
@@ -150,7 +149,6 @@
           scale="0.05 0.05 0.05"
           gltf-model="#sun-model"
           sun
-          class= "clickable"
         ></a-entity>
         
   </a-entity>
