@@ -22,9 +22,10 @@ AFRAME.registerComponent('description', {
     init: function(){
     //console.log("init from " + this.el.id);
 
-    this.el.addEventListener('click', () => 
+    this.el.addEventListener('click', (ev) => 
         {   
-            showInfo(this);
+            console.log("desc clicked");
+            if (!showing) showInfo(this);
         });
 
      function showInfo(object)
@@ -34,8 +35,21 @@ AFRAME.registerComponent('description', {
                 showing = true;
                 object.data.objectInfo.object3D.visible = true; 
                 object.data.objectInfo.classList.add("clickable");
+                if (object.el.sceneEl.is('vr-mode') || object.el.sceneEl.is('ar-mode'))
+                {
+                    setTimeout(function () {
+                    hideInfo(object.data.objectInfo);
+                    }, 5000);
+                }
             }
      }
+
+     function hideInfo(infoObj)
+        {
+            showing = false; 
+            infoObj.object3D.visible = false;
+            infoObj.classList.remove("clickable");
+        }
     },
   
     // Create or update the line geometry.
