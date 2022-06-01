@@ -2,7 +2,7 @@
 //--- Sun
 //----------------------------------------------------------------------------------
 
-var animationSpeed = 50.0;
+var animationSpeed = 30.0;
 var animationPlaying = true;
 var earthYear = 2 * Math.PI / animationSpeed;
 AFRAME.registerComponent('planet', {
