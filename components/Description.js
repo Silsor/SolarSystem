@@ -9,7 +9,8 @@
 - Display formated name
 - Remove after 2048 ms
 */
-let showing = false;
+var showing = false;
+var currentSelected;
 AFRAME.registerComponent('description', {
     // Allow line component to accept vertices and color.
     schema: {
@@ -25,7 +26,8 @@ AFRAME.registerComponent('description', {
     this.el.addEventListener('click', (ev) => 
         {   
             console.log("desc clicked");
-            if (!showing) showInfo(this);
+            if (showing) hideInfo(currentSelected);
+            showInfo(this);
         });
 
      function showInfo(object)
@@ -33,6 +35,7 @@ AFRAME.registerComponent('description', {
         if (!showing)
             {
                 showing = true;
+                currentSelected = object.data.objectInfo;
                 object.data.objectInfo.object3D.visible = true; 
                 object.data.objectInfo.classList.add("clickable");
                 if (object.el.sceneEl.is('vr-mode') || object.el.sceneEl.is('ar-mode'))
@@ -49,6 +52,7 @@ AFRAME.registerComponent('description', {
             showing = false; 
             infoObj.object3D.visible = false;
             infoObj.classList.remove("clickable");
+            console.log("hide1: " +currentSelected.id);
         }
     },
   
@@ -107,6 +111,7 @@ AFRAME.registerComponent('description', {
             showing = false; 
             infoObj.object3D.visible = false;
             infoObj.classList.remove("clickable");
+            console.log("hide2: " + currentSelected.id);
         }
     }
   });
