@@ -23,12 +23,14 @@ AFRAME.registerComponent('description', {
     init: function(){
     //console.log("init from " + this.el.id);
 
-    this.el.addEventListener('click', (ev) => 
-        {   
-            console.log("desc clicked");
-            if (showing) hideInfo(currentSelected);
-            showInfo(this);
-        });
+    function clickHandlerShow (event) {
+        console.log("desc clicked");
+        if (showing) hideInfo(currentSelected);
+        //console.log(event.target.object3D.el.components.description);
+        showInfo(event.target.object3D.el.components.description);
+    }
+
+    this.el.addEventListener('click', clickHandlerShow);
 
      function showInfo(object)
      {
@@ -37,13 +39,13 @@ AFRAME.registerComponent('description', {
                 showing = true;
                 currentSelected = object.data.objectInfo;
                 object.data.objectInfo.object3D.visible = true; 
-                object.data.objectInfo.classList.add("clickable");
                 if (object.el.sceneEl.is('vr-mode') || object.el.sceneEl.is('ar-mode'))
                 {
                     setTimeout(function () {
                     hideInfo(object.data.objectInfo);
                     }, 5000);
                 }
+                else object.data.objectInfo.classList.add("clickable");
             }
      }
 
@@ -103,7 +105,12 @@ AFRAME.registerComponent('description', {
          
             this.data.objectInfo = entityEl;
             if (!(this.el.sceneEl.is('vr-mode') || this.el.sceneEl.is('ar-mode'))){
-                this.data.objectInfo.addEventListener('click', () => { hideInfo(this.data.objectInfo)});}
+                this.data.objectInfo.addEventListener('click', clickHandlerHide);}
+        }
+
+        function clickHandlerHide (event) {
+            console.log(event);
+            if (!(event.target.sceneEl.is('vr-mode') || event.target.sceneEl.is('ar-mode'))) hideInfo(event.target);
         }
 
         function hideInfo(infoObj)
