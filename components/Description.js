@@ -98,7 +98,7 @@ AFRAME.registerComponent('description', {
             entityEl.object3D.position.set(0, 0.015, -0.05);
          
             this.data.objectInfo = entityEl;
-            if (!(object.el.sceneEl.is('vr-mode') || object.el.sceneEl.is('ar-mode'))){
+            if (!(this.el.sceneEl.is('vr-mode') || this.el.sceneEl.is('ar-mode'))){
                 this.data.objectInfo.addEventListener('click', () => { hideInfo(this.data.objectInfo)});}
         }
 
