@@ -109,6 +109,7 @@ AFRAME.registerComponent("hide-in-ar-mode", {
     const slider = document.getElementById("myRange");
     const checkboxSwitch = document.getElementById('checkboxSwitch');
     var output = document.getElementById("sliderValue");
+    slider.value = animationSpeed;
     output.innerHTML = slider.value;
 
     toggle.addEventListener('click', () =>
