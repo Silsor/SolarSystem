@@ -19,19 +19,16 @@
             obj.traverse(function(child){
             if (child.material)
                 {
-                    /*let standard = THREE.ShaderLib['standard'];
-                    let customMaterial = new THREE.ShaderMaterial('sun-shader','');
-                    customMaterial.uniforms.diffuse = new THREE.Color('white');
-                    customMaterial.uniforms.roughness = 0;
-                    customMaterial.uniforms.metalness = 0;
-                    customMaterial.needsUpdate = true;
-                    child.material = customMaterial;*/
-                    //console.log(child.material);
                     child.material.emissiveIntensity = 3;
                     child.material.roughness = 1;
                     child.material.needsUpdate = true;
                 }
             });
+        });
+
+        this.el.addEventListener('click', () => 
+        {   
+            this.el.setAttribute("description", 'name', this.el.id);
         });
       },
       
