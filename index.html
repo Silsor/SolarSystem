@@ -33,6 +33,7 @@
     <script src="components/Sun.js"></script>
     <script src="components/Planet.js"></script>
     <script src="components/Description.js"></script>
+    <script src="components/VenusImage.js"></script>
 
     <script src="script.js"></script>
 
@@ -103,6 +104,11 @@
           src="assets/starmap_g4k.jpg" 
           crossorigin="anonymous"
         />
+        <img 
+          id="venus-image" 
+          src="assets/wenus.png" 
+          crossorigin="anonymous"
+        />
       </a-assets>
   
  <!-- Camera -->
@@ -131,6 +137,9 @@
   animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 0.03 0.03 0.03; to: 0.001 0.001 0.001"
   animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 0.03 0.03 0.03"
   ></a-entity>
+  <a-entity id= "venus-img-plane" position="0.012 0.019 -0.04" scale="0.005 0.005 0.005" visible="false">
+  <a-plane src="#venus-image" height="1" width="1"></a-plane>
+  </a-entity>
 </a-entity>
 
   <a-entity id="camera_target" position="0 0 0"></a-entity>
@@ -179,6 +188,7 @@
           planet= "a: 8.7476; b: 8.8941; timeToAroundSun: 0.615; hoursToRotate: -5832; axialTilt: 2.64"
           class="clickable"
           description="info: Astronomicznego symbolu Wenus ♀ używa się również do oznaczania płci żeńskiej. Symbol Wenus oznacza kobiecość, a w zachodniej alchemii odpowiada miedzi. Polerowana miedź była w starożytności używana do tworzenia luster, a symbol bywał interpretowany jako lustro bogini."
+          venus-img
         ></a-entity>
         
   </a-entity>

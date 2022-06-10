@@ -24,7 +24,6 @@ AFRAME.registerComponent('description', {
     //console.log("init from " + this.el.id);
 
     function clickHandlerShow (event) {
-        console.log("desc clicked");
         if (showing) hideInfo(currentSelected);
         //console.log(event.target.object3D.el.components.description);
         showInfo(event.target.object3D.el.components.description);
@@ -54,7 +53,8 @@ AFRAME.registerComponent('description', {
             showing = false; 
             infoObj.object3D.visible = false;
             infoObj.classList.remove("clickable");
-            console.log("hide1: " +currentSelected.id);
+            hideVenusImage();
+            //console.log("hide1: " +currentSelected.id);
         }
     },
   
@@ -109,7 +109,6 @@ AFRAME.registerComponent('description', {
         }
 
         function clickHandlerHide (event) {
-            console.log(event);
             if (!(event.target.sceneEl.is('vr-mode') || event.target.sceneEl.is('ar-mode'))) hideInfo(event.target);
         }
 
@@ -118,7 +117,9 @@ AFRAME.registerComponent('description', {
             showing = false; 
             infoObj.object3D.visible = false;
             infoObj.classList.remove("clickable");
-            console.log("hide2: " + currentSelected.id);
+            console.log(infoObj.object3D.el);
+            hideVenusImage();
+            //console.log("hide2: " + currentSelected.id);
         }
     }
   });
